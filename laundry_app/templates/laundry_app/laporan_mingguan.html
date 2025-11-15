@@ -1,0 +1,37 @@
+{% extends 'laundry_app/base.html' %}
+
+{% block content %}
+<h2>Laporan Mingguan</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Tanggal</th>
+            <th>Pelanggan</th>
+            <th>Produk</th>
+            <th>Berat (kg)</th>
+            <th>Total Harga</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for transaksi in transaksi_list %}
+        <tr>
+            <td>{{ transaksi.tanggal }}</td>
+            <td>{{ transaksi.nama_pelanggan }}</td>
+            <td>{{ transaksi.produk.nama }}</td>
+            <td>{{ transaksi.berat_kg }}</td>
+            <td>Rp{{ transaksi.total_harga|floatformat:0 }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5" class="text-center">Belum ada transaksi hari ini.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- Tombol Cetak di kanan bawah -->
+<div class="text-right mt-3 no-print">
+    <button onclick="window.print()" class="btn btn-primary">Cetak Laporan</button>
+</div>
+{% endblock %}

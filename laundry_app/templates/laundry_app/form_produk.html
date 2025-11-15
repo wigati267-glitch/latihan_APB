@@ -1,0 +1,9 @@
+{% extends 'laundry_app/base.html' %}
+{% block content %}
+<h2>Tambah Produk</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Simpan</button>
+</form>
+{% endblock %}

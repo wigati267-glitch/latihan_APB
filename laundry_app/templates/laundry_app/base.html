@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Laundry App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+    <!-- Font Awesome (untuk ikon jika dibutuhkan) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            background-color: #f7fafd;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .navbar {
+            background: linear-gradient(to right, #007bff, #3399ff);
+        }
+
+        .navbar-brand, .nav-link, .dropdown-item {
+            color: white !important;
+        }
+
+        .dropdown-menu {
+            background-color: #ffffff; 
+        }
+
+        .dropdown-item {
+            color: #212529 !important;  
+        }
+
+        .dropdown-item:hover {
+            background-color: #f0f0f0; 
+            color: #007bff !important; 
+  }
+        }
+
+        .nav-link:hover {
+            color: #ffd700 !important;
+        }
+
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark shadow no-print">
+  <div class="container-fluid">
+    <a class="navbar-brand font-weight-bold" href="{% url 'home' %}"><i class="fas fa-tshirt mr-1"></i> Laundry</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <!-- Menu KIRI -->
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'home' %}">Home</a>
+        </li>
+
+        {% if user.is_authenticated %}
+        <!-- Produk -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="produkDropdown" role="button" data-toggle="dropdown">
+            Produk
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="{% url 'tambah_produk' %}">Tambah Produk</a>
+            <a class="dropdown-item" href="{% url 'daftar_produk' %}">Cek Produk</a>
+          </div>
+        </li>
+
+        <!-- Laporan -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="laporanDropdown" role="button" data-toggle="dropdown">
+            Laporan
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="{% url 'laporan_harian' %}">Laporan Harian</a>
+            <a class="dropdown-item" href="{% url 'laporan_mingguan' %}">Laporan Mingguan</a>
+            <a class="dropdown-item" href="{% url 'laporan_bulanan' %}">Laporan Bulanan</a>
+          </div>
+        </li>
+
+        <!-- Penjualan -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="penjualanDropdown" role="button" data-toggle="dropdown">
+            Penjualan
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="{% url 'tambah_transaksi' %}">Tambah Transaksi</a>
+          </div>
+        </li>
+        {% endif %}
+      </ul>
+
+      <!-- Menu KANAN -->
+      <ul class="navbar-nav ml-auto">
+        {% if user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+          </li>
+        {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Login</a>
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav> 
+
+<!-- Konten Utama -->
+<div class="container mt-4">
+    {% block content %}
+    {% endblock %}
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

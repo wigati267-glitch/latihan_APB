@@ -1,0 +1,38 @@
+{% extends 'laundry_app/base.html' %}
+
+{% block content %}
+<div class="jumbotron text-center bg-light shadow rounded p-5">
+    <h1 class="display-4">Selamat Datang di Aplikasi Laundry</h1>
+    <p class="lead mt-3">Kelola transaksi laundry Anda dengan mudah, cepat, dan efisien.</p>
+    <hr class="my-4">
+    <p>Gunakan menu di atas untuk mengelola produk, mencatat transaksi, dan melihat laporan harian, mingguan, maupun bulanan.</p>
+    <a class="btn btn-primary btn-lg mt-2" href="{% url 'tambah_transaksi' %}" role="button">Tambah Transaksi Sekarang</a>
+</div>
+
+<div class="row text-center mt-5">
+    <div class="col-md-4">
+        <div class="card shadow-sm border-0">
+            <div class="card-body">
+                <h5 class="card-title">Manajemen Produk</h5>
+                <p class="card-text">Tambah, ubah, dan hapus produk laundry dengan mudah.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mt-4 mt-md-0">
+        <div class="card shadow-sm border-0">
+            <div class="card-body">
+                <h5 class="card-title">Transaksi Penjualan</h5>
+                <p class="card-text">Catat dan kelola transaksi pelanggan secara efisien.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mt-4 mt-md-0">
+        <div class="card shadow-sm border-0">
+            <div class="card-body">
+                <h5 class="card-title">Laporan</h5>
+                <p class="card-text">Lihat laporan harian, mingguan, dan bulanan untuk bisnis Anda.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

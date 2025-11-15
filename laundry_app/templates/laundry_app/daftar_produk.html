@@ -1,0 +1,28 @@
+{% extends 'laundry_app/base.html' %}
+{% load humanize %}
+
+{% block content %}
+<h2>Daftar Produk</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nama Produk</th>
+            <th>Harga per Kg</th>
+            <th>Aksi</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for produk in produk_list %}
+        <tr>
+            <td>{{ produk.nama }}</td>
+            <td>Rp {{ produk.harga_per_kg|floatformat:0|intcomma }}</td>
+            <td>
+                <a href="{% url 'edit_produk' produk.id %}" class="btn btn-warning btn-sm">Edit</a>
+                <a href="{% url 'hapus_produk' produk.id %}" class="btn btn-danger btn-sm">Hapus</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'laundry_app/base.html' %}
+{% load humanize %}
+{% block content %}
+<h2>Transaksi Berhasil</h2>
+<table class="table">
+    <tr><th>Tanggal</th><td>{{ transaksi.tanggal }}</td></tr>
+    <tr><th>Nama Pelanggan</th><td>{{ transaksi.nama_pelanggan }}</td></tr>
+    <tr><th>Produk</th><td>{{ transaksi.produk.nama }}</td></tr>
+    <tr><th>Berat (kg)</th><td>{{ transaksi.berat_kg|floatformat:"-2" }}</td></tr>
+    <tr><th>Total Harga</th><td>Rp{{ transaksi.total_harga|floatformat:0|intcomma }}</td></tr>
+</table>
+
+<!-- Tombol Cetak -->
+<div class="text-right mt-3 no-print">
+    <button onclick="window.print()" class="btn btn-primary">Cetak Transaksi</button>
+</div>
+{% endblock %}
